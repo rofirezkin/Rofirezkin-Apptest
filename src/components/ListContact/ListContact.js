@@ -1,17 +1,28 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {EditProfile} from '../../assets';
 
-const ListContact = ({firstName, lastName, age, image}) => {
+const ListContact = ({firstName, lastName, onPress, age, image}) => {
   return (
-    <View style={styles.sectionContact}>
+    <TouchableOpacity onPress={onPress} style={styles.sectionContact}>
       <Image source={{uri: image}} style={styles.avatar} />
       <View style={{marginLeft: 10}}>
         <Text style={styles.name}>
           {firstName} {lastName}
         </Text>
-        <Text style={styles.age}>{age}</Text>
+        <Text style={styles.desc}>+62875646634 - {age} years old</Text>
+        <Text style={styles.desc}>Ok Brother letst talk later, see you..</Text>
       </View>
-    </View>
+      <TouchableOpacity
+        style={{
+          alignItems: 'flex-end',
+          justifyContent: 'center',
+          flex: 1,
+          paddingRight: 10,
+        }}>
+        <EditProfile />
+      </TouchableOpacity>
+    </TouchableOpacity>
   );
 };
 
@@ -25,10 +36,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 14,
   },
-  avatar: {width: 50, height: 50, borderRadius: 50 / 2},
+  avatar: {width: 60, height: 60, borderRadius: 60 / 2},
   name: {
-    fontSize: 16,
+    fontSize: 17,
     color: '#142756',
     fontWeight: '600',
+  },
+  desc: {
+    fontSize: 15,
   },
 });

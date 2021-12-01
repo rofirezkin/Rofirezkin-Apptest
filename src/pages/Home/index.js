@@ -4,10 +4,10 @@ import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {API_HOST} from '../../API';
 import {Profile} from '../../assets';
-import {ListContact} from '../../components';
+import {ButtonInputContact, ListContact} from '../../components';
 import {getContactAction} from '../../redux/action';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const [dataContact, setDataContact] = useState([]);
   const {contact} = useSelector(state => state.contactReducer);
@@ -26,6 +26,7 @@ const Home = () => {
         renderItem={({item}) => {
           return (
             <ListContact
+              onPress={() => navigation.navigate('DetailContact', item.id)}
               firstName={item.firstName}
               lastName={item.lastName}
               age={item.age}
@@ -34,6 +35,9 @@ const Home = () => {
           );
         }}
       />
+      <View style={styles.buttonInput}>
+        <ButtonInputContact />
+      </View>
     </View>
   );
 };
@@ -53,5 +57,10 @@ const styles = StyleSheet.create({
   text: {
     color: '#142756',
     fontSize: 25,
+  },
+  buttonInput: {
+    position: 'absolute',
+    bottom: 30,
+    right: 30,
   },
 });

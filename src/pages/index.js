@@ -1,6 +1,16 @@
-import DetailChecklist from './DetailChecklist';
+import DetailContact from './DetailContact';
 import Home from './Home';
 import Register from './Register';
 import SignIn from './SignIn';
 import SplashScreen from './SplashScreen';
-export {DetailChecklist, SplashScreen, Home, Register, SignIn};
+import InputContact from './InputContact';
+import EditContact from './EditContact';
+export {
+  DetailContact,
+  EditContact,
+  SplashScreen,
+  Home,
+  Register,
+  SignIn,
+  InputContact,
+};

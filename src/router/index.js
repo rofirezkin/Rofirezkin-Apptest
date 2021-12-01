@@ -1,7 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {DetailChecklist, Home, Register, SignIn, SplashScreen} from '../pages';
+import {
+  DetailContact,
+  EditContact,
+  Home,
+  InputContact,
+  Register,
+  SignIn,
+  SplashScreen,
+} from '../pages';
 const Router = () => {
   const Stack = createNativeStackNavigator();
   return (
@@ -28,8 +36,18 @@ const Router = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="DetailChecklist"
-        component={DetailChecklist}
+        name="DetailContact"
+        component={DetailContact}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="InputContact"
+        component={InputContact}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="EditContact"
+        component={EditContact}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

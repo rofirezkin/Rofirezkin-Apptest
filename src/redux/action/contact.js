@@ -13,6 +13,6 @@ export const getContactAction = () => dispatch => {
       dispatch({type: 'SET_CONTACT', value: res.data.data});
     })
     .catch(err => {
-      console.log(err);
+      console.log(err.message);
     });
 };
