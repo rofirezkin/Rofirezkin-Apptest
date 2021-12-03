@@ -9,8 +9,6 @@ import {
 } from '../../assets';
 
 const ListDetailContact = ({onPress, data}) => {
-  console.log('res', data);
-
   const Icon = () => {
     if (data.icon === 'calling') {
       return <IcCalling />;

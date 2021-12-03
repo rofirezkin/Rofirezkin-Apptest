@@ -6,7 +6,9 @@ import Gap from './Gap';
 import Button from './Button';
 import ListDetailContact from './ListDetailContact';
 import DetailProfile from './DetailProfile';
+import Loading from './Loading';
 export {
+  Loading,
   DetailProfile,
   ListContact,
   ListDetailContact,

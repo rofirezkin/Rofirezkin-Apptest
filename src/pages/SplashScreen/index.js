@@ -5,13 +5,13 @@ import {getData} from '../../utils/localstorage';
 const SplashScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Home');
+      navigation.reset({index: 0, routes: [{name: 'Home'}]});
     }, 2000);
   }, [navigation]);
 
   return (
     <View style={styles.page}>
-      <Text>Halooo Splash</Text>
+      <Text>Halooo SplashScreen</Text>
     </View>
   );
 };

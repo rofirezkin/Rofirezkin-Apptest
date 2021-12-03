@@ -9,7 +9,6 @@ import {dataJson} from '../../assets/dataJson';
 const DetailContact = ({navigation, route}) => {
   const [detailData, setDetailData] = useState('');
   const idContact = route.params;
-  console.log('dalam', dataJson);
 
   useEffect(() => {
     axios

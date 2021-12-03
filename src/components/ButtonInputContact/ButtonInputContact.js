@@ -2,10 +2,10 @@ import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const ButtonInputContact = () => {
-  const navigation = useNavigation();
+const ButtonInputContact = ({navigation}) => {
   return (
     <TouchableOpacity
+      testID="myButton"
       style={styles.button}
       onPress={() => navigation.navigate('InputContact')}>
       <Text style={styles.icon}>+</Text>

@@ -16,9 +16,13 @@
     "react": "17.0.2",
     "react-native": "0.66.3",
     "react-native-flash-message": "^0.2.0",
+    "react-native-gesture-handler": "^2.0.0",
     "react-native-image-picker": "^4.3.0",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-reanimated": "^2.2.4",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.9.0",
+    "react-native-skeleton-content-nonexpo": "^1.0.13",
     "react-native-svg": "^12.1.1",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
@@ -26,9 +30,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
     "@babel/runtime": "^7.16.3",
     "@react-native-community/eslint-config": "^3.0.1",
-    "babel-jest": "^27.4.1",
+    "@types/jest": "^27.0.3",
+    "babel-jest": "^27.4.2",
     "eslint": "^8.3.0",
     "jest": "^27.4.1",
     "metro-react-native-babel-preset": "^0.66.2",
@@ -36,6 +42,19 @@
     "react-test-renderer": "17.0.2"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "setupFiles": [
+      "<rootDir>/src/jestSetup.js"
+    ],
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!@shotgunjed)/"
+    ]
   }
 }

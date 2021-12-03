@@ -8,19 +8,22 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
+import {useDispatch, useSelector} from 'react-redux';
 import {API_HOST} from '../../API';
 import {IcRemovePhoto} from '../../assets';
 import {Button, Gap, Header, TextInput} from '../../components';
+import {editContactAction, setLoading} from '../../redux/action';
+import {showError, showSuccess} from '../../utils';
 import useForm from '../../utils/useForm';
 
 const EditContact = ({route, navigation}) => {
+  const dispatch = useDispatch();
+  const [photo, setPhoto] = useState(route.params.photo);
+  const [photoForDB, setPhotoForDB] = useState(route.params.photo);
   const [detailData, setDetailData] = useState(route.params);
-  const [dataAge, setDataAge] = useState('');
-  const [form, setForm] = useForm({
-    firstName: '',
-    lastName: '',
-    age: '',
-  });
+  const [dataAge, setDataAge] = useState(route.params.age);
+  const {message} = useSelector(state => state.globalReducer);
 
   const getImage = () => {
     launchImageLibrary(
@@ -29,14 +32,11 @@ const EditContact = ({route, navigation}) => {
         if (response.didCancel || response.error) {
           showError('opps, sepertinya anda tidak memilih fotonya?');
         } else {
-          console.log('response', response);
-          const source = {uri: response.assets[0].uri};
-          setForm(
-            'photo',
+          const source = response.assets[0].uri;
+          setPhotoForDB(
             `data:${response.assets[0].type};base64, ${response.assets[0].base64}`,
           );
           setPhoto(source);
-          setHasPhoto(true);
         }
       },
     );
@@ -50,7 +50,17 @@ const EditContact = ({route, navigation}) => {
   };
 
   const onSubmit = () => {
-    console.log('on submin', detailData);
+    const age = parseInt(dataAge, 10);
+
+    const dataInput = {
+      firstName: detailData.firstName,
+      lastName: detailData.lastName,
+      age: age,
+      photo: photoForDB,
+    };
+
+    console.log('halo age', dataInput);
+    dispatch(editContactAction(dataInput, detailData.id, message, navigation));
   };
 
   console.log('detail data', detailData);
@@ -66,10 +76,7 @@ const EditContact = ({route, navigation}) => {
           <View style={styles.photo}>
             <TouchableOpacity onPress={getImage}>
               <View style={styles.borderPhoto}>
-                <Image
-                  source={{uri: detailData.photo}}
-                  style={styles.photoContainer}
-                />
+                <Image source={{uri: photo}} style={styles.photoContainer} />
                 <View style={styles.icAddPhoto}>
                   <IcRemovePhoto />
                 </View>
@@ -91,8 +98,8 @@ const EditContact = ({route, navigation}) => {
             <Gap height={13} />
             <TextInput
               keyboardType="numeric"
-              value={`${detailData.age}`}
-              onChangeText={value => changeText('age', value)}
+              value={`${dataAge}`}
+              onChangeText={value => setDataAge(value)}
               label="Age"
             />
           </View>

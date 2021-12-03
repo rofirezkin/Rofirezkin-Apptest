@@ -1,12 +1,12 @@
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Button} from '..';
+
 import {IcCall, IcMessage, IcVideoCall, IcWhatsapp} from '../../assets';
 
 const DetailProfile = ({detailData, id}) => {
   const navigation = useNavigation();
-  console.log('detail ', detailData);
+
   return (
     <>
       <View style={styles.centerSection}>

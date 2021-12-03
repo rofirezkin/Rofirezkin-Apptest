@@ -12,18 +12,18 @@ import {launchImageLibrary} from 'react-native-image-picker';
 import useForm from '../../utils/useForm';
 import {showError} from '../../utils/showMessages';
 import {IcAddPhoto, IcRemovePhoto} from '../../assets';
-import {useDispatch} from 'react-redux';
-import {InputContactAction} from '../../redux/action';
+import {useDispatch, useSelector} from 'react-redux';
+import {InputContactAction, setLoading} from '../../redux/action';
 
 const InputContact = ({navigation}) => {
   const dispatch = useDispatch();
+
   const [photo, setPhoto] = useState();
   const [hasPhoto, setHasPhoto] = useState(false);
   const [dataAge, setDataAge] = useState('');
   const [form, setForm] = useForm({
     firstName: '',
     lastName: '',
-
     photo: '',
   });
 
@@ -49,7 +49,6 @@ const InputContact = ({navigation}) => {
 
   const onSubmit = () => {
     const age = parseInt(dataAge, 10);
-
     const data = {
       ...form,
       age,

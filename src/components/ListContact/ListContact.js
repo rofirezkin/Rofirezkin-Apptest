@@ -1,10 +1,53 @@
+import {useNavigation} from '@react-navigation/core';
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {EditProfile} from '../../assets';
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {EditProfile, IcDelete} from '../../assets';
+import {deleteContactAction} from '../../redux/action';
 
-const ListContact = ({firstName, lastName, onPress, age, image}) => {
+const ListContact = ({firstName, lastName, onPress, age, image, id}) => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
+  const handlerDelete = () => {
+    //handler for Long Click
+    Alert.alert(
+      'Delete contact',
+      'are you sure to delete this contact?',
+      [
+        {
+          text: 'Yes',
+          onPress: handlerClick,
+          style: 'Cancel',
+        },
+      ],
+      {
+        cancelable: true,
+        // onDismiss: () =>
+        //   Alert.alert(
+        //     'This alert was dismissed by tapping outside of the alert dialog.',
+        //   ),
+      },
+    );
+  };
+
+  const handlerClick = () => {
+    //handler for Long Click
+
+    dispatch(deleteContactAction(id, navigation));
+  };
   return (
-    <TouchableOpacity onPress={onPress} style={styles.sectionContact}>
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={onPress}
+      style={styles.sectionContact}>
       <Image source={{uri: image}} style={styles.avatar} />
       <View style={{marginLeft: 10}}>
         <Text style={styles.name}>
@@ -14,13 +57,14 @@ const ListContact = ({firstName, lastName, onPress, age, image}) => {
         <Text style={styles.desc}>Ok Brother letst talk later, see you..</Text>
       </View>
       <TouchableOpacity
+        onPress={handlerDelete}
         style={{
           alignItems: 'flex-end',
           justifyContent: 'center',
           flex: 1,
           paddingRight: 10,
         }}>
-        <EditProfile />
+        <IcDelete />
       </TouchableOpacity>
     </TouchableOpacity>
   );

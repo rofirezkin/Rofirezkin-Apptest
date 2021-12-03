@@ -2,18 +2,29 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {API_HOST} from '../../API';
+
 import {Profile} from '../../assets';
 import {ButtonInputContact, ListContact} from '../../components';
 import {getContactAction} from '../../redux/action';
+import SkeletonContent from 'react-native-skeleton-content-nonexpo';
+import {skeletonHome} from '../../components/skeleton/skeletonHome';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const [dataContact, setDataContact] = useState([]);
   const {contact} = useSelector(state => state.contactReducer);
+  const [loading, setLoading] = useState(true);
+
+  const wait = timeout => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  };
+
   useEffect(() => {
-    dispatch(getContactAction());
-  }, []);
+    wait(2000).then(() => setLoading(false));
+    navigation.addListener('focus', () => {
+      dispatch(getContactAction());
+    });
+  }, [navigation]);
 
   return (
     <View style={styles.page}>
@@ -25,18 +36,26 @@ const Home = ({navigation}) => {
         data={contact}
         renderItem={({item}) => {
           return (
-            <ListContact
-              onPress={() => navigation.navigate('DetailContact', item.id)}
-              firstName={item.firstName}
-              lastName={item.lastName}
-              age={item.age}
-              image={item.photo}
-            />
+            <>
+              <SkeletonContent
+                containerStyle={{flex: 1}}
+                isLoading={loading}
+                layout={skeletonHome}>
+                <ListContact
+                  onPress={() => navigation.navigate('DetailContact', item.id)}
+                  firstName={item.firstName}
+                  lastName={item.lastName}
+                  age={item.age}
+                  id={item.id}
+                  image={item.photo}
+                />
+              </SkeletonContent>
+            </>
           );
         }}
       />
       <View style={styles.buttonInput}>
-        <ButtonInputContact />
+        <ButtonInputContact navigation={navigation} />
       </View>
     </View>
   );
