@@ -12,8 +12,10 @@ import IcChat from './textsms.svg';
 import IcBlock from './rejected.svg';
 import IcVideoCall from './video.svg';
 import EditProfile from './setting.svg';
+import IcLogo from './logo.svg';
 import IcDelete from './delete.svg';
 export {
+  IcLogo,
   IcDelete,
   EditProfile,
   IcVideoCall,

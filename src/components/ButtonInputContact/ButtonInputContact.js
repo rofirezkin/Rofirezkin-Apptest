@@ -17,7 +17,7 @@ export default ButtonInputContact;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: '#AE7AFF',
     borderRadius: 60 / 2,
     width: 60,
     height: 60,

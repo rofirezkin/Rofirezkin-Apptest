@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {API_HOST} from '../../API';
 import {IcCall, IcMessage, IcWhatsapp} from '../../assets';
-import {DetailProfile, Header, ListDetailContact} from '../../components';
+import {DetailProfile, Gap, Header, ListDetailContact} from '../../components';
 import {dataJson} from '../../assets/dataJson';
 
 const DetailContact = ({navigation, route}) => {
@@ -26,13 +26,13 @@ const DetailContact = ({navigation, route}) => {
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={{flex: 1}}>
-      <View style={styles.page}>
+    <View style={styles.page}>
+      <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <Header
           detail
           title="Detail Contact"
           onBack={() => navigation.goBack()}
-          subTitle="disini anda bisa melihat riwayat contact"
+          subTitle="you can see contact history"
         />
         <DetailProfile detailData={detailData} />
         <View style={styles.cardSection}>
@@ -41,8 +41,8 @@ const DetailContact = ({navigation, route}) => {
             return <ListDetailContact key={res.id} data={res} />;
           })}
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 

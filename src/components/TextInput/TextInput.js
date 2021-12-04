@@ -6,7 +6,7 @@ const TextInput = ({label, placeholder, ...restProps}) => {
   const [focused, setFocused] = useState(false);
 
   const onFocusForm = () => {
-    setBorder('#3745BD');
+    setBorder('#AE7AFF');
   };
   const onBLurForm = () => {
     setBorder('#C4C4C4');

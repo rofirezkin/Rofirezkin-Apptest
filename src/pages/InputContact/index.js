@@ -61,8 +61,8 @@ const InputContact = ({navigation}) => {
     <View style={styles.page}>
       <ScrollView>
         <Header
-          title="Tambah Kontak"
-          subTitle="buat kontak untuk kerabat anda"
+          title="Add Contact"
+          subTitle="let's make contact for your friend"
           onBack={() => navigation.goBack()}
         />
         <View style={styles.container}>

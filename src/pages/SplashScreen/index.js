@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
+import {IcLogo} from '../../assets';
+import {Gap} from '../../components';
 import {getData} from '../../utils/localstorage';
 
 const SplashScreen = ({navigation}) => {
@@ -11,7 +13,9 @@ const SplashScreen = ({navigation}) => {
 
   return (
     <View style={styles.page}>
-      <Text>Halooo SplashScreen</Text>
+      <IcLogo />
+      <Gap height={20} />
+      <Text style={styles.text}>MyContact</Text>
     </View>
   );
 };
@@ -23,10 +27,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F05A61',
   },
   text: {
-    color: 'white',
     fontSize: 23,
     fontFamily: 'Poppins-Medium',
   },

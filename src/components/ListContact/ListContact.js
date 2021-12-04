@@ -16,6 +16,15 @@ const ListContact = ({firstName, lastName, onPress, age, image, id}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
+  const shortDesc = lastName;
+
+  let fixedDesc = '';
+  if (shortDesc.length > 23) {
+    fixedDesc = shortDesc.substring(0, 23) + '...';
+  } else {
+    fixedDesc = shortDesc;
+  }
+
   const handlerDelete = () => {
     //handler for Long Click
     Alert.alert(
@@ -51,7 +60,7 @@ const ListContact = ({firstName, lastName, onPress, age, image, id}) => {
       <Image source={{uri: image}} style={styles.avatar} />
       <View style={{marginLeft: 10}}>
         <Text style={styles.name}>
-          {firstName} {lastName}
+          {firstName} {fixedDesc}
         </Text>
         <Text style={styles.desc}>+62875646634 - {age} years old</Text>
         <Text style={styles.desc}>Ok Brother letst talk later, see you..</Text>
@@ -77,7 +86,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: '#EEEEEE',
-    paddingHorizontal: 20,
+    paddingHorizontal: 18,
     paddingVertical: 14,
   },
   avatar: {width: 60, height: 60, borderRadius: 60 / 2},

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {LogBox, StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import Router from './router';
 import {Provider, useDispatch, useSelector} from 'react-redux';
@@ -9,7 +9,7 @@ import {Loading} from './components';
 
 const MainApp = () => {
   const {isLoading} = useSelector(state => state.globalReducer);
-
+  LogBox.ignoreAllLogs();
   return (
     <NavigationContainer>
       <Router />

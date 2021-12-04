@@ -59,17 +59,15 @@ const EditContact = ({route, navigation}) => {
       photo: photoForDB,
     };
 
-    console.log('halo age', dataInput);
     dispatch(editContactAction(dataInput, detailData.id, message, navigation));
   };
 
-  console.log('detail data', detailData);
   return (
     <View style={styles.page}>
       <ScrollView>
         <Header
-          title="Tambah Kontak"
-          subTitle="buat kontak untuk kerabat anda"
+          title="Edit Contact"
+          subTitle="edit and save your contacts"
           onBack={() => navigation.goBack()}
         />
         <View style={styles.container}>
